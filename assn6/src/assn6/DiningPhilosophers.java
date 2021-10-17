@@ -13,7 +13,7 @@ public class DiningPhilosophers {
         }
 
         for (int i = 0; i < philosophers.length; i++) {
-        	//Designates left and right fork for each philosopher as we go through the loop 
+            //Designates left and right fork for each philosopher as we go through the loop 
             Object leftFork = forks[i];
             Object rightFork = forks[(i + 1) % forks.length];
 
