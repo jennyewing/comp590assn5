@@ -41,4 +41,4 @@ public class Philosopher implements Runnable {
             return;
         }
     }
-   }
+}
