@@ -2,7 +2,7 @@ package assn5;
 
 public class Philosopher implements Runnable {
 	
-	private Object leftFork;
+    private Object leftFork;
     private Object rightFork;
 
     public Philosopher(Object leftFork, Object rightFork) {
