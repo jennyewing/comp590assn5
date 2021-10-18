@@ -13,7 +13,8 @@ public class Philosopher implements Runnable {
     // Instructs a philosopher to perform an action
     // Suspends the invoking thread for a random amount of time
     // Meaning the execution order isn't enforced by time alone
-    private void doAction(String action) throws InterruptedException {
+    // essentially logging fn so we can see system time and the action executed
+    private void doAction(String action) throws InterruptedException {   
         System.out.println(Thread.currentThread().getName() + " " + action);
         Thread.sleep(((int) (Math.random() * 100)));
     }
@@ -24,19 +25,19 @@ public class Philosopher implements Runnable {
         try {
             while (true) {
                 // Philosopher is thinking/just has a left fork
-                doAction(System.nanoTime() + ": Think");
-                synchronized (leftFork) {
-                    doAction(System.nanoTime() + ": Pick up left fork");
+                doAction((double) System.nanoTime() / 1_000_000_000 + ": Think");
+                synchronized (leftFork) { // in other class switching order of left/right fork objects changes the order of pick up to prevent deadlock
+                    doAction((double) System.nanoTime() / 1_000_000_000 + ": Pick up left fork");
                     synchronized (rightFork) {
-                        // Philosopher is eating/has picked up a right fork
-                        doAction(System.nanoTime() + ": Pick up right fork and feast"); 
-                        doAction(System.nanoTime() + ": Put down right fork");
+                        // Philosopher can eat now with both forks
+                        doAction((double) System.nanoTime() / 1_000_000_000 + ": Pick up right fork and feast"); 
+                        doAction((double) System.nanoTime() / 1_000_000_000 + ": Put down right fork");
                     }
-                    // Philosopher is back to thinking/has put down a left fork
-                    doAction(System.nanoTime() + ": Put down left fork and think");
+                    // Philosopher is back to thinking/has put down a left fork for another to pick up
+                    doAction((double) System.nanoTime() / 1_000_000_000 + ": Put down left fork and think");
                 }
             }
-        } catch (InterruptedException e) {
+        } catch (InterruptedException e) { 
             Thread.currentThread().interrupt();
             return;
         }
