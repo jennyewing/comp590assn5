@@ -27,7 +27,7 @@ public class Philosopher implements Runnable {
                 // Philosopher is thinking/just has a left fork
 		String t = ((double) System.nanoTime() / 1_000_000_000).toString();
                 doAction(t + ": Philosophizing");
-                synchronized (leftFork) { // in other class switching order of left/right fork objects changes the order of pick up to prevent deadlock
+                synchronized (leftFork) { // In other class switching order of left/right fork objects changes the order of pick up to prevent deadlock
 		    t = ((double) System.nanoTime() / 1_000_000_000).toString();
                     doAction(t + ": Pick up left fork");
                     synchronized (rightFork) {
