@@ -13,7 +13,7 @@ public class Philosopher implements Runnable {
     // Instructs a philosopher to perform an action
     // Suspends the invoking thread for a random amount of time
     // Meaning the execution order isn't enforced by time alone
-    // essentially logging fn so we can see system time and the action executed
+    // Essentially logging fn so we can see system time and the action executed
     private void doAction(String action) throws InterruptedException {   
         System.out.println(Thread.currentThread().getName() + " " + action);
         Thread.sleep(((int) (Math.random() * 100)));
@@ -31,7 +31,7 @@ public class Philosopher implements Runnable {
 		    t = ((double) System.nanoTime() / 1_000_000_000).toString();
                     doAction(t + ": Pick up left fork");
                     synchronized (rightFork) {
-                        // Philosopher can eat now with both fork
+                        // Philosopher can eat now with both forks
 			t = ((double) System.nanoTime() / 1_000_000_000).toString();
                         doAction(t + ": Pick up right fork and feast"); 
 		        t = ((double) System.nanoTime() / 1_000_000_000).toString();
