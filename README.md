@@ -1,2 +1,2 @@
 # comp590assn6
-#Contributors: Jenny Ewing, Christina Alperi
+Contributors: Jenny Ewing, Christina Alperi
